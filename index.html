@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Boostline Logistics - Truck Dispatch Services</title>
-    <!-- Google Fonts - Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,13 +17,26 @@
     />
   </head>
   <body>
+    <div id="preloader">
+      <img
+        src="images/logistic.png"
+        alt="Loading Logo"
+        class="preloader-logo"
+      />
+    </div>
+
     <header class="header">
       <nav class="navbar" id="navbar">
         <div class="logo">
-          <img src="images/logistic icon.svg" alt="Boostline Logistics Logo" />
+          <img src="images/logistic.png" alt="Boostline Logistics Logo" />
+        </div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
         <ul class="nav-links">
-          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#home" class="nav-link active">Home</a></li>
           <li><a href="#services" class="nav-link">Services</a></li>
           <li><a href="#trucks" class="nav-link">Our Fleet</a></li>
           <li><a href="#about" class="nav-link">About Us</a></li>
@@ -46,62 +58,190 @@
       </div>
     </section>
 
+    <section class="section features-section">
+      <h2>Why Choose Us?</h2>
+      <div class="features-container">
+        <div class="feature-item reveal">
+          <div class="feature-icon-circle">
+            <i class="fas fa-calendar-alt icon"></i>
+          </div>
+          <h3>Book an Appointment</h3>
+          <p>Booking yourself with Dispatch experts now</p>
+          <a href="#services" class="btn btn-small">Read More</a>
+        </div>
+        <div class="feature-item reveal">
+          <div class="feature-icon-circle">
+            <i class="fas fa-dollar-sign icon"></i>
+          </div>
+          <h3>Best Rates</h3>
+          <p>Maximizing your profit with competitive pricing</p>
+          <a href="#services" class="btn btn-small">Read More</a>
+        </div>
+        <div class="feature-item reveal">
+          <div class="feature-icon-circle">
+            <i class="fas fa-headset icon"></i>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>We provide best dispatch support to our carriers</p>
+          <a href="#services" class="btn btn-small">Read More</a>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="services">
       <h2>Our Services</h2>
-      <div class="services-container">
-        <div class="service-item reveal">
-          <i class="fas fa-route icon"></i>
-          <h3>Load Optimization</h3>
-          <p>
-            We find the best routes and loads to maximize your earnings and
-            minimize deadhead miles.
-          </p>
+      <p class="section-intro-text">
+        At Boostline Logistics, we understand that the success of your trucking
+        business depends on more than just the road ahead. It's about securing
+        the best-paying rates for your loads and optimizing your earnings to
+        reach unprecedented heights. We are not just a dispatch company – we are
+        your partners in profit maximization and growth.
+      </p>
+      <div class="services-content-layout">
+        <div class="services-container">
+          <div class="service-item reveal">
+            <i class="fas fa-search-dollar icon"></i>
+            <h3>Load Search FTL/LTL</h3>
+            <p>
+              We proactively locate available loads (shipments) for truckers,
+              including Full Truckload (FTL) and Less Than Truckload (LTL)
+              options, allowing you to concentrate on driving.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-handshake icon"></i>
+            <h3>Rate Negotiation & Booking</h3>
+            <p>
+              Our expert team negotiates fair rates with brokers on your behalf
+              and handles all booking details, ensuring equitable compensation
+              and streamlined processes.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-cogs icon"></i>
+            <h3>Efficient Carrier Setup</h3>
+            <p>
+              We simplify connecting carriers with brokers by handling all
+              paperwork and carrier packets, eliminating complexities for a
+              smooth partnership.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-money-check-alt icon"></i>
+            <h3>Factoring</h3>
+            <p>
+              Boostline Logistics assists carriers with factoring, facilitating
+              the sale of accounts receivable for immediate cash flow.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-car-crash icon"></i>
+            <h3>Insurance Assistance</h3>
+            <p>
+              We guide carriers through obtaining and maintaining essential
+              insurance coverage to ensure protection and compliance on every
+              journey.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-coins icon"></i>
+            <h3>Pay Per Load</h3>
+            <p>
+              Boostline Logistics operates on a flexible pay-per-load basis,
+              ensuring you are compensated fairly for every successfully
+              transported load.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-scroll icon"></i>
+            <h3>No Contracts</h3>
+            <p>
+              Our commitment to flexibility means truckers are not tied to rigid
+              contracts. Carriers are free to partner with us at their
+              discretion.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-hourglass-half icon"></i>
+            <h3>Detention Management</h3>
+            <p>
+              We manage detention scenarios for carriers, diligently ensuring
+              you receive fair compensation for waiting times at shippers or
+              receivers.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-bed icon"></i>
+            <h3>Layover Compensation</h3>
+            <p>
+              We provide support for drivers facing extended waiting periods
+              between loads, facilitating appropriate layover compensation to
+              cover your time.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-ban icon"></i>
+            <h3>TONU (Truck Ordered Not Used)</h3>
+            <p>
+              Boostline Logistics handles TONU situations, ensuring carriers are
+              compensated if a load is canceled after dispatch, protecting your
+              earnings.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-receipt icon"></i>
+            <h3>Invoicing</h3>
+            <p>
+              We handle all invoicing for carriers, sending bills to shippers or
+              brokers. Timely payment for your deliveries is our top priority.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-money-bill-wave icon"></i>
+            <h3>Collections</h3>
+            <p>
+              Our dedicated team manages collections, diligently pursuing
+              payments from invoiced parties to ensure carriers are paid
+              promptly and without hassle.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-users-cog icon"></i>
+            <h3>Dedicated Dispatch Team</h3>
+            <p>
+              Benefit from our professional team who manages load coordination,
+              communication, rate negotiation, and efficient operations,
+              dedicated to unparalleled support.
+            </p>
+          </div>
+          <div class="service-item reveal">
+            <i class="fas fa-phone-volume icon"></i>
+            <h3>24/7 Support</h3>
+            <p>
+              Boostline Logistics provides round-the-clock assistance and
+              guidance to carriers and drivers, ensuring help and solutions are
+              always available when needed.
+            </p>
+          </div>
         </div>
-        <div class="service-item reveal">
-          <i class="fas fa-headset icon"></i>
-          <h3>24/7 Support</h3>
-          <p>
-            Our dispatchers are available around the clock to assist with any
-            queries or emergencies.
-          </p>
-        </div>
-        <div class="service-item reveal">
-          <i class="fas fa-file-invoice-dollar icon"></i>
-          <h3>Paperwork Management</h3>
-          <p>
-            We handle all necessary documentation, including invoicing and
-            billing, so you can focus on driving.
-          </p>
-        </div>
-        <div class="service-item reveal">
-          <i class="fas fa-chart-line icon"></i>
-          <h3>Market Analysis</h3>
-          <p>
-            Stay competitive with our insights into current market rates and
-            freight trends.
-          </p>
-        </div>
-        <div class="service-item reveal">
-          <i class="fas fa-shield-alt icon"></i>
-          <h3>Safety & Compliance</h3>
-          <p>
-            We help ensure you meet all industry safety standards and regulatory
-            requirements.
-          </p>
-        </div>
-        <div class="service-item reveal">
-          <i class="fas fa-map-marked-alt icon"></i>
-          <h3>Strategic Route Planning</h3>
-          <p>
-            Advanced planning to avoid delays and find the most efficient paths
-            for your deliveries.
-          </p>
-        </div>
+        <button
+          id="showMoreServicesBtn"
+          class="btn"
+          style="margin-top: 30px; display: none"
+        >
+          Show More Services
+        </button>
       </div>
     </section>
 
     <section class="section bg-light" id="trucks">
       <h2>Trucks We Dispatch For</h2>
+      <p class="section-intro-text">
+        Empowering Your Haulage, Regardless of Size. From nimble box trucks to
+        mighty semi-trailers, our expert dispatch services cater to all.
+        Seamlessly efficient routes, timely deliveries, and profit-boosting
+        solutions await you. Discover hassle-free trucking today.
+      </p>
       <div class="trucks-container">
         <div class="truck-item reveal">
           <img src="images/semi.jpg" alt="Semi-Truck" />
@@ -122,6 +262,16 @@
           <img src="images/dryvan.jpg" alt="Dry Van Truck" />
           <h3>Dry Van Trucks</h3>
           <p>General freight transportation, protected from elements.</p>
+        </div>
+        <div class="truck-item reveal">
+          <img src="images/power-only.jpg" alt="Power Only Truck" />
+          <h3>Power Only</h3>
+          <p>Dispatching power units to pull client trailers.</p>
+        </div>
+        <div class="truck-item reveal">
+          <img src="images/hotshot.jpg" alt="Hotshot Truck" />
+          <h3>Hotshot Trucks</h3>
+          <p>Expedited, smaller load transportation with speed.</p>
         </div>
       </div>
     </section>
@@ -144,13 +294,96 @@
           on transparent communication, reliable service, and building
           long-lasting partnerships with our clients.
         </p>
+
+        <h3 class="expect-heading">What to Expect from us</h3>
+        <div class="expect-grid">
+          <div class="expect-item">
+            <div class="expect-icon-circle">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <h4>Best Rates</h4>
+            <p>
+              Unbeatable pricing for exceptional transportation value, ensuring
+              your budget goes further.
+            </p>
+          </div>
+          <div class="expect-item">
+            <div class="expect-icon-circle">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <h4>Carrier Packets</h4>
+            <p>
+              Seamless onboarding with simplified paperwork, making joining our
+              network a breeze.
+            </p>
+          </div>
+          <div class="expect-item">
+            <div class="expect-icon-circle">
+              <i class="fas fa-user-friends"></i>
+            </div>
+            <h4>Driver's Assist</h4>
+            <p>
+              Expert guidance for safe and efficient deliveries, supporting
+              drivers every mile of the way.
+            </p>
+          </div>
+          <div class="expect-item">
+            <div class="expect-icon-circle">
+              <i class="fas fa-file-invoice"></i>
+            </div>
+            <h4>Weekly Invoice</h4>
+            <p>
+              Clear, hassle-free billing with detailed weekly invoices,
+              simplifying your financial management.
+            </p>
+          </div>
+          <div class="expect-item">
+            <div class="expect-icon-circle">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h4>Customer Support</h4>
+            <p>
+              Dedicated team available around the clock, delivering personalized
+              assistance for peace of mind.
+            </p>
+          </div>
+          <div class="expect-item">
+            <div class="expect-icon-circle">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h4>Dispatch Service</h4>
+            <p>
+              Non-stop monitoring and real-time updates, ensuring your cargo is
+              in capable hands day and night.
+            </p>
+          </div>
+          <div class="expect-item">
+            <div class="expect-icon-circle">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h4>Broker Check</h4>
+            <p>
+              Verify our trusted industry credentials and transparent track
+              record, reinforcing your confidence in our partnership.
+            </p>
+          </div>
+          <div class="expect-item">
+            <div class="expect-icon-circle">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h4>Credit Checks</h4>
+            <p>
+              Assess financial reliability swiftly through thorough credit
+              checks, empowering informed decisions for secure transactions.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="section contact-section" id="contact">
       <div class="contact-container">
         <div class="contact-text-content reveal">
-          <p class="contact-subtitle">How can we help you?</p>
           <h2 class="contact-title">Contact us</h2>
           <p class="contact-intro-text">
             We're here to help and answer any questions you might have. We look
@@ -158,12 +391,12 @@
           </p>
           <div class="contact-info">
             <p>
-              <i class="fas fa-map-marker-alt icon"></i> 123 Logistics Drive,
-              Lahore, Punjab, Pakistan
+              <i class="fas fa-map-marker-alt icon"></i> 18 Apley lane, Villa
+              park, IL 60181
             </p>
             <p>
               <i class="fas fa-phone-alt icon"></i>
-              <a href="tel:+923123456789">+92 312 3456789</a>
+              <a href="tel:+923123456789">+1 331-551-3202</a>
             </p>
             <p>
               <i class="fas fa-envelope icon"></i>
@@ -173,7 +406,7 @@
             </p>
           </div>
         </div>
-        <div class="contact-illustration reveal">
+        <div class="contact-illustration">
           <img src="images/12981629_5118754.svg" alt="Contact Illustration" />
         </div>
       </div>
@@ -196,13 +429,16 @@
         </div>
         <div class="footer-contact">
           <h3>Contact Us</h3>
-          <p><i class="fas fa-phone-alt"></i> Phone: +92 312 3456789</p>
           <p>
-            <i class="fas fa-envelope"></i> Email: info@boostlinelogistics.com
+            <i class="fas fa-phone-alt"></i> <span>Phone: +1 331-551-3202</span>
           </p>
           <p>
-            <i class="fas fa-map-marker-alt"></i> Address: 123 Logistics Drive,
-            Lahore, Punjab, Pakistan
+            <i class="fas fa-envelope"></i>
+            <span>Email: info@boostlinelogistics.com</span>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Address: 18 Apley lane, Villa park, IL 60181</span>
           </p>
         </div>
       </div>
