@@ -640,15 +640,13 @@ body.nav-open {
 
 .contact-section {
   padding: 100px 20px;
-  /* Ensure the section itself can center its content by default */
-  text-align: center; /* This helps center its direct children, including the h2 */
+  text-align: center; /* Ensure the section itself centers its content */
 }
 
 .contact-section .section-h2 {
   color: var(--text-color);
   font-size: 3.2em;
   margin-bottom: 20px;
-  /* These properties are now for all sizes, but will be reinforced in media queries */
   display: block; /* Ensure it takes full width for centering */
   margin-left: auto; /* For block-level centering */
   margin-right: auto; /* For block-level centering */
@@ -915,43 +913,47 @@ body.nav-open {
     line-height: 1.5;
   }
 
-  /* Contact Section Responsive Fix (Stronger Centering) */
+  /* Contact Section Responsive Spacing Adjustment */
   .contact-section {
-    text-align: center; /* Ensure the section itself centers its content */
+    text-align: center;
   }
   .contact-section .section-h2 {
-    display: block; /* Make it a block element */
-    margin: 0 auto 20px auto; /* Center block element horizontally, reset bottom margin */
-    text-align: center; /* Center the text inside the block */
-    width: 100%; /* Ensure it takes full width for proper centering */
+    display: block;
+    margin: 0 auto 20px auto; /* Keep the margin here for spacing below heading */
+    text-align: center;
+    width: 100%;
     max-width: 100%;
-    padding-left: 0; /* Clear potential offsets */
-    padding-right: 0; /* Clear potential offsets */
-    float: none; /* Ensure no floating interferes */
+    padding-left: 0;
+    padding-right: 0;
+    float: none;
   }
   .contact-container {
     flex-direction: column;
-    align-items: center; /* This centers the container columns themselves */
-    text-align: center; /* Centering for the container's contents when stacked */
+    align-items: center;
+    text-align: center;
+    gap: 20px; /* Reduced gap between text content and illustration */
   }
   .contact-text-content {
     padding-right: 0;
-    padding-bottom: 40px;
-    text-align: center; /* Align content inside to center for consistency */
+    padding-bottom: 20px; /* Reduced spacing below text content */
+    text-align: center;
   }
   .contact-intro-text {
-    margin: 20px auto 60px auto; /* Center intro text */
-    max-width: 800px; /* Use max-width for readability */
-    text-align: center; /* Center the text within its own block */
+    margin: 15px auto 30px auto; /* Reduced margins for intro text */
+    max-width: 800px;
+    text-align: center;
+  }
+  .contact-info {
+    margin-top: 30px; /* Reduced top margin for contact info */
   }
   .contact-info p {
-    justify-content: center; /* Center contact info paragraphs */
+    justify-content: center;
   }
   .contact-illustration {
     flex: none;
     width: 100%;
     max-width: 400px;
-    margin-top: 20px;
+    margin-top: 0; /* Directly removing top margin here */
   }
   .contact-illustration img {
     max-height: 350px;
@@ -1129,15 +1131,15 @@ body.nav-open {
     line-height: 1.5;
   }
 
-  /* Contact Section Responsive Fix (Stronger Centering) */
+  /* Contact Section Responsive Spacing Adjustment */
   .contact-section {
-    text-align: center; /* Ensure the section itself centers its content */
+    text-align: center;
   }
   .contact-section .section-h2 {
-    display: block; /* Make it a block element */
-    margin: 0 auto 20px auto; /* Center block element horizontally, reset bottom margin */
-    text-align: center; /* Center the text inside the block */
-    width: 100%; /* Ensure it takes full width for proper centering */
+    display: block;
+    margin: 0 auto 15px auto; /* Reduced margin below heading */
+    text-align: center;
+    width: 100%;
     max-width: 100%;
     padding-left: 0;
     padding-right: 0;
@@ -1146,24 +1148,29 @@ body.nav-open {
   .contact-container {
     flex-direction: column;
     align-items: center;
-    text-align: center; /* Centering for the container's contents when stacked */
+    text-align: center;
+    gap: 15px; /* Further reduced gap */
   }
   .contact-text-content {
     padding-right: 0;
-    padding-bottom: 40px;
-    text-align: center; /* Align content inside to center for consistency */
+    padding-bottom: 15px; /* Further reduced spacing below text content */
+    text-align: center;
   }
   .contact-intro-text {
     font-size: 1em;
-    margin: 20px auto 60px auto; /* Center intro text */
+    margin: 10px auto 25px auto; /* Further reduced margins for intro text */
     max-width: 800px;
-    text-align: center; /* Center the text within its own block */
+    text-align: center;
+  }
+  .contact-info {
+    margin-top: 20px; /* Further reduced top margin for contact info */
   }
   .contact-info p {
-    justify-content: center; /* Center contact info paragraphs */
+    justify-content: center;
   }
   .contact-illustration {
     max-height: 300px;
+    margin-top: 0; /* Ensure no top margin */
   }
   .footer-logo img {
     height: 150px;
@@ -1270,25 +1277,39 @@ body.nav-open {
     line-height: 1.5;
   }
 
-
+ 
   .contact-section {
-    text-align: center; 
+    text-align: center;
   }
   .contact-section .section-h2 {
-    display: block; 
-    margin: 0 auto 20px auto; 
-    text-align: center; 
-    width: 100%; 
+    display: block;
+    margin: 0 auto 10px auto; 
+    text-align: center;
+    width: 100%;
     max-width: 100%;
     padding-left: 0;
     padding-right: 0;
     float: none;
   }
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px; 
+  }
+  .contact-text-content {
+    padding-right: 0;
+    padding-bottom: 10px; 
+    text-align: center;
+  }
   .contact-intro-text {
     font-size: 0.95em;
-    margin: 20px auto 60px auto; 
+    margin: 5px auto 20px auto; 
     max-width: 800px;
-    text-align: center; 
+    text-align: center;
+  }
+  .contact-info {
+    margin-top: 15px; 
   }
   .contact-info p {
     font-size: 1.05em;
@@ -1299,5 +1320,6 @@ body.nav-open {
   }
   .contact-illustration img {
     max-height: 300px;
+    margin-top: 0;
   }
 }
