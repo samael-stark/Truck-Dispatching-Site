@@ -36,6 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (document.body.classList.contains("nav-open")) {
         toggleNav();
       }
+
+      setTimeout(() => {
+        revealOnScroll();
+      }, 700);
     });
   });
 
@@ -72,6 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   window.addEventListener("scroll", revealOnScroll);
+  // Initial call to reveal elements already in view on page load
+  revealOnScroll();
 
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
@@ -138,6 +144,13 @@ document.addEventListener("DOMContentLoaded", function () {
       let delay = 0;
       for (let i = itemsToShowInitially; i < serviceItems.length; i++) {
         serviceItems[i].classList.remove("hidden");
+
+        const animationClass = serviceItems[i].classList.contains(
+          "fade-in-left"
+        )
+          ? "fade-in-left"
+          : "fade-in-right";
+        serviceItems[i].classList.add(animationClass);
         setTimeout(() => {
           serviceItems[i].classList.add("active");
         }, delay);
