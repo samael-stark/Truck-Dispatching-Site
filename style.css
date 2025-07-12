@@ -266,7 +266,8 @@ body.nav-open {
 }
 
 .banner {
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+    url("path/to/your/background-image.jpg") no-repeat center center/cover; /* Placeholder for background image */
   color: var(--white);
   min-height: 100vh;
   display: flex;
@@ -639,16 +640,16 @@ body.nav-open {
 
 .contact-section {
   padding: 100px 20px;
-  /* Removed text-align: left; for content within the section to be controlled by specific rules below */
 }
 
 .contact-section .section-h2 {
   color: var(--text-color);
   font-size: 3.2em;
   margin-bottom: 20px;
-  text-align: left; /* Aligned the main heading to the left */
+  text-align: left; /* Aligned the main heading to the left for desktop */
   animation: none;
   opacity: 1;
+  width: 100%; /* Ensure it takes full width for proper centering on desktop too */
 }
 
 .contact-section .section-h2::after {
@@ -907,24 +908,24 @@ body.nav-open {
   }
   .contact-container {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: center; /* This centers the container columns themselves */
+  }
+  .contact-section .section-h2 {
+    text-align: center; /* Center the contact heading in responsive */
+    width: 100%; /* Ensure it spans full width to allow proper centering */
   }
   .contact-text-content {
     padding-right: 0;
     padding-bottom: 40px;
-    text-align: center; /* Aligns text to center in mobile/tablet view for this column */
+    text-align: left; /* Align text to left for content in responsive */
   }
-  .contact-text-content .contact-subtitle,
-  .contact-text-content .contact-title {
-    text-align: center;
-  }
-  /* Adjusted margin for contact-intro-text for better flow with contact-info margin-top */
   .contact-intro-text {
-    margin: 20px auto 60px auto;
+    margin: 20px 0 60px 0; /* Adjust margin for left alignment, no auto */
+    max-width: 100%; /* Ensure it takes full width within its flex item */
+    text-align: left;
   }
   .contact-info p {
-    justify-content: center; /* Centers the icon and text together in mobile/tablet view */
+    justify-content: flex-start; /* Keep contact info left aligned */
   }
   .contact-illustration {
     flex: none;
@@ -933,7 +934,7 @@ body.nav-open {
     margin-top: 20px;
   }
   .contact-illustration img {
-    max-height: 350px; /* Increased illustration size for medium screens */
+    max-height: 350px;
   }
   .footer-logo img {
     height: 150px;
@@ -945,7 +946,7 @@ body.nav-open {
   .footer-logo,
   .footer-links,
   .footer-contact {
-    text-align: center;
+    text-align: center; /* Keep these centered, as per previous consensus */
     max-width: 100%;
   }
   .footer-links h3,
@@ -953,7 +954,7 @@ body.nav-open {
     display: block;
   }
   .footer-contact p {
-    justify-content: center;
+    justify-content: center; /* Keep centered for contact details in footer */
     align-items: flex-start;
   }
 }
@@ -1107,19 +1108,19 @@ body.nav-open {
     font-size: 0.8em;
     line-height: 1.5;
   }
-  .contact-section .contact-title {
-    font-size: 2.5em;
+  .contact-section .section-h2 {
+    text-align: center; /* Center the contact heading in responsive */
+    width: 100%; /* Ensure it spans full width to allow proper centering */
   }
   .contact-intro-text {
     font-size: 1em;
-  }
-  /* Adjusted margin for contact-intro-text for better flow with contact-info margin-top */
-  .contact-intro-text {
-    margin: 20px auto 60px auto;
+    margin: 20px 0 60px 0; /* Adjust margin for left alignment, no auto */
+    max-width: 100%; /* Ensure it takes full width within its flex item */
+    text-align: left;
   }
   .contact-info p {
     font-size: 1.1em;
-    justify-content: center; /* Ensure consistent centering */
+    justify-content: flex-start; /* Keep contact info left aligned */
   }
   .contact-info p .icon {
     font-size: 1.4em;
@@ -1231,18 +1232,19 @@ body.nav-open {
     font-size: 0.75em;
     line-height: 1.5;
   }
-  .contact-section .contact-title {
-    font-size: 2em;
+  .contact-section .section-h2 {
+    text-align: center; 
+    width: 100%; 
   }
   .contact-intro-text {
     font-size: 0.95em;
-  }
-
-  .contact-intro-text {
-    margin: 20px auto 60px auto;
+    margin: 20px 0 60px 0; 
+    max-width: 100%; 
+    text-align: left;
   }
   .contact-info p {
     font-size: 1.05em;
+    justify-content: flex-start; 
   }
   .contact-info p .icon {
     font-size: 1.3em;
