@@ -639,14 +639,14 @@ body.nav-open {
 
 .contact-section {
   padding: 100px 20px;
-  /* Removed text-align: left; to allow content to be centered by its children or parent flex container */
+  /* Removed text-align: left; for content within the section to be controlled by specific rules below */
 }
 
 .contact-section .section-h2 {
   color: var(--text-color);
   font-size: 3.2em;
   margin-bottom: 20px;
-  text-align: center; /* Explicitly center the heading */
+  text-align: left; /* Aligned the main heading to the left */
   animation: none;
   opacity: 1;
 }
@@ -669,7 +669,7 @@ body.nav-open {
   flex: 1 1 50%;
   min-width: 300px;
   padding-right: 20px;
-  text-align: center; /* Center all text content within this block */
+  text-align: left; /* Aligned all text content within this block to the left */
 }
 
 .contact-illustration {
@@ -689,7 +689,7 @@ body.nav-open {
 }
 
 .contact-info {
-  margin-top: 80px; /* Add significant top margin to the contact info block */
+  margin-top: 80px; /* Added significant top margin for spacing */
 }
 
 .contact-info p {
@@ -698,7 +698,7 @@ body.nav-open {
   margin-bottom: 15px;
   display: flex;
   align-items: flex-start;
-  justify-content: center; /* Center the icon and text together on each line */
+  justify-content: flex-start; /* Aligned the icon and text to the left */
 }
 
 .contact-info p .icon {
@@ -913,7 +913,7 @@ body.nav-open {
   .contact-text-content {
     padding-right: 0;
     padding-bottom: 40px;
-    text-align: center; /* Ensure it remains centered */
+    text-align: center; /* Aligns text to center in mobile/tablet view for this column */
   }
   .contact-text-content .contact-subtitle,
   .contact-text-content .contact-title {
@@ -924,7 +924,7 @@ body.nav-open {
     margin: 20px auto 60px auto;
   }
   .contact-info p {
-    justify-content: center; /* Ensure consistent centering */
+    justify-content: center; /* Centers the icon and text together in mobile/tablet view */
   }
   .contact-illustration {
     flex: none;
@@ -1237,7 +1237,7 @@ body.nav-open {
   .contact-intro-text {
     font-size: 0.95em;
   }
-  /* Adjusted margin for contact-intro-text for better flow with contact-info margin-top */
+
   .contact-intro-text {
     margin: 20px auto 60px auto;
   }
@@ -1248,6 +1248,6 @@ body.nav-open {
     font-size: 1.3em;
   }
   .contact-illustration img {
-    max-height: 300px; /* Increased illustration size for small screens */
+    max-height: 300px;
   }
 }
