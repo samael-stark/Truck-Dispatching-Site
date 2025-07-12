@@ -1,13 +1,12 @@
-/* General Styling */
 :root {
-  --primary-red: #e44d26; /* A vibrant, strong red */
-  --secondary-red: #ff6b4a; /* A slightly lighter red for accents */
+  --primary-red: #e44d26;
+  --secondary-red: #ff6b4a;
   --white: #ffffff;
-  --light-gray: #f8f8f8; /* Keeping a light background for sections */
-  --text-color: #333333; /* Darker text for readability on white/light backgrounds */
+  --light-gray: #f8f8f8;
+  --text-color: #333333;
   --border-color: #ddd;
   --input-bg: #f5f5f5;
-  --contact-subtitle-color: #4a7c59; /* Greenish color for subtitle */
+  --contact-subtitle-color: #4a7c59;
 }
 
 * {
@@ -17,12 +16,53 @@
 }
 
 body {
-  font-family: "Inter", sans-serif; /* Applied Inter font */
+  font-family: "Inter", sans-serif;
   line-height: 1.7;
   color: var(--text-color);
   scroll-behavior: smooth;
   background-color: var(--white);
   overflow-x: hidden;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-logo {
+  max-width: 250px;
+  height: auto;
+  animation: bounceScale 2s infinite ease-in-out;
+}
+
+@keyframes bounceScale {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
 }
 
 .section {
@@ -44,18 +84,20 @@ body {
   opacity: 0;
 }
 
-@keyframes textFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.top-services-heading {
+  font-size: 3.2em;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  color: var(--primary-red);
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+  animation: textFadeInUp 1s ease-out forwards;
+  opacity: 0;
 }
 
-.section h2::after {
+.section h2::after,
+.top-services-heading::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -67,10 +109,32 @@ body {
   border-radius: 3px;
 }
 
-/* Header and Navigation - Slim with large logo (250px) */
+@keyframes textFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-intro-text {
+  font-size: 1.15em;
+  color: #666;
+  max-width: 800px;
+  margin: 20px auto 50px auto;
+  line-height: 1.6;
+}
+
+.bg-light {
+  background-color: var(--white);
+}
+
 .header {
   background: var(--white);
-  padding: 10px 0; /* Slim header padding */
+  padding: 10px 0;
   position: fixed;
   width: 100%;
   top: 0;
@@ -83,7 +147,7 @@ body {
 
 .header.scrolled {
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 8px 0; /* Even slimmer when scrolled */
+  padding: 8px 0;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
@@ -96,11 +160,14 @@ body {
   padding: 0 25px;
 }
 
+.navbar .logo {
+  flex-shrink: 0;
+}
+
 .navbar .logo img {
-  height: 250px; /* Logo size: 250px */
+  height: 250px;
   width: auto;
-  /* Negative margins to make the logo visually extend beyond the slim nav bar */
-  margin: -100px 0 -100px 0; /* Adjusted for 250px logo */
+  margin: -100px 0 -100px 0;
   max-width: 100%;
   transition: transform 0.3s ease;
 }
@@ -149,44 +216,87 @@ body {
   color: var(--primary-red);
 }
 
-/* Banner Section */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1100;
+  transition: all 0.3s ease;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary-red);
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
 .banner {
-  /* Removed background-image from here as it's now an <img> tag */
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.75),
-    rgba(0, 0, 0, 0.75)
-  ); /* Dark overlay for text readability */
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75));
   color: var(--white);
-  min-height: 95vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  /* This padding needs to clear the visual height of the large logo */
-  padding-top: 250px; /* Adjusted for 250px logo */
-  position: relative; /* Needed for absolute positioning of the image */
+  padding-top: 250px;
+  padding-bottom: 50px;
+  position: relative;
   overflow: hidden;
   animation: zoomBackground 20s infinite alternate ease-in-out;
 }
 
 .banner-bg-image {
-  /* Style for the <img> within the banner */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures image covers the area without distortion */
-  z-index: -1; /* Puts the image behind the content */
-  opacity: 0.8; /* Adjust opacity as needed for text readability */
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.8;
 }
 
 @keyframes zoomBackground {
   from {
-    transform: scale(1.05); /* Zoom in effect */
+    transform: scale(1.05);
   }
   to {
-    transform: scale(1); /* Zoom out effect */
+    transform: scale(1);
   }
 }
 
@@ -196,7 +306,7 @@ body {
   transform: scale(0.8) translateY(20px);
   max-width: 900px;
   padding: 0 20px;
-  position: relative; /* To ensure text is above the image and has its own stacking context */
+  position: relative;
   z-index: 1;
 }
 
@@ -249,12 +359,82 @@ body {
   box-shadow: 0 8px 20px rgba(228, 77, 38, 0.4);
 }
 
-/* Services Section */
+.features-section {
+  z-index: 2;
+}
+
+.features-section h2 {
+  display: inline-block;
+}
+
+.features-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 60px;
+  margin-top: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white);
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 5px solid var(--primary-red);
+  border-top: none;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-align: center;
+}
+
+.feature-item:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.feature-item .icon {
+  font-size: 3em;
+  color: var(--primary-red);
+  margin-bottom: 20px;
+  animation: none;
+}
+
+.feature-item h3 {
+  font-size: 1.6em;
+  margin-bottom: 12px;
+  color: var(--text-color);
+  font-weight: 700;
+  transition: color 0.3s ease;
+  line-height: 1.2;
+}
+
+.feature-item:hover h3 {
+  color: var(--primary-red);
+}
+
+.feature-item p {
+  font-size: 1em;
+  color: #666;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.btn-small {
+  display: none;
+}
+
 .services-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 40px;
   margin-top: 60px;
+  margin-bottom: 80px;
 }
 
 .service-item {
@@ -263,7 +443,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease;
   border-top: 5px solid var(--primary-red);
 }
 
@@ -276,12 +456,6 @@ body {
   font-size: 3.5em;
   color: var(--primary-red);
   margin-bottom: 25px;
-  animation: bounceIn 1s ease-out forwards;
-}
-
-/* Bounce in on hover for icons */
-.service-item:hover .icon {
-  animation: iconBounce 0.5s ease-in-out;
 }
 
 @keyframes iconBounce {
@@ -306,12 +480,23 @@ body {
   color: #666;
 }
 
-/* Trucks Section */
+.service-item.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.service-item.visible-temp {
+  display: flex;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
 .trucks-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 40px;
-  margin-top: 60px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .truck-item {
@@ -353,7 +538,6 @@ body {
   padding: 0 20px 30px;
 }
 
-/* About Section */
 .about-content {
   text-align: left;
   font-size: 1.2em;
@@ -368,141 +552,203 @@ body {
   color: var(--text-color);
 }
 
-/* Contact Section - New Design */
+.expect-heading {
+  font-size: 2.5em;
+  color: var(--primary-red);
+  margin-top: 80px;
+  margin-bottom: 50px;
+  display: block;
+  text-align: center;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.expect-heading::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background-color: var(--secondary-red);
+  border-radius: 3px;
+}
+
+.expect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+  text-align: left;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.expect-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.expect-item .fas {
+  font-size: 1.8em;
+  color: var(--primary-red);
+  margin: 0;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+  margin-top: 2px;
+}
+
+.expect-item:hover .fas {
+  transform: translateY(-5px);
+  color: var(--secondary-red);
+}
+
+.expect-item h4 {
+  grid-column: 2;
+  font-size: 1.1em;
+  color: var(--text-color);
+  margin-bottom: 3px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.expect-item:hover h4 {
+  color: var(--primary-red);
+}
+
+.expect-item p {
+  grid-column: 2;
+  font-size: 0.8em;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 2px;
+}
+
 .contact-section {
-  /* Removed background-color */
-  padding: 100px 20px; /* Adjust padding as needed */
-  text-align: left; /* Align content to the left within the section */
+  padding: 100px 20px;
+  /* Removed text-align: left; to allow content to be centered by its children or parent flex container */
 }
 
 .contact-section .section-h2 {
-  /* Override default h2 styling for this section */
-  color: var(--text-color); /* Darker text for "Contact us" */
+  color: var(--text-color);
   font-size: 3.2em;
-  margin-bottom: 20px; /* Reduced margin */
-  text-align: left; /* Align to left */
-  animation: none; /* Remove animation */
-  opacity: 1; /* Ensure visible */
+  margin-bottom: 20px;
+  text-align: center; /* Explicitly center the heading */
+  animation: none;
+  opacity: 1;
 }
 
 .contact-section .section-h2::after {
-  /* Remove the underline for this section's h2 */
   display: none;
 }
 
 .contact-container {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center; /* Vertically center items */
-  max-width: 1000px; /* Max width for the content inside */
-  margin: 0 auto; /* Center the container */
-  gap: 40px; /* Space between text and illustration */
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 40px;
 }
 
 .contact-text-content {
-  flex: 1 1 50%; /* Takes up roughly half the width */
-  min-width: 300px; /* Minimum width before stacking */
-  padding-right: 20px; /* Space from illustration */
-}
-
-.contact-subtitle {
-  font-size: 1.2em;
-  color: var(--contact-subtitle-color); /* Greenish color */
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.contact-title {
-  font-size: 3.5em;
-  color: var(--text-color); /* Darker text */
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.contact-intro-text {
-  font-size: 1.1em;
-  line-height: 1.6;
-  color: #555;
-  margin-bottom: 30px;
-}
-
-.contact-info p {
-  display: flex;
-  align-items: center;
-  font-size: 1.2em;
-  color: var(--text-color);
-  margin-bottom: 15px; /* Space between contact lines */
-}
-
-.contact-info p:last-child {
-  margin-bottom: 0; /* No margin for the last item */
-}
-
-.contact-info p .icon {
-  font-size: 1.5em; /* Icon size */
-  color: var(--primary-red); /* Red color for icons */
-  margin-right: 15px;
-  /* No animation for these icons */
-  animation: none;
-}
-
-.contact-info p a {
-  color: var(--text-color);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.contact-info p a:hover {
-  color: var(--primary-red);
+  flex: 1 1 50%;
+  min-width: 300px;
+  padding-right: 20px;
+  text-align: center; /* Center all text content within this block */
 }
 
 .contact-illustration {
-  flex: 1 1 40%; /* Takes up remaining width, slightly less than text */
+  flex: 1 1 40%;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-illustration img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 0 auto; /* Center the image */
+  margin: 0 auto;
+  max-height: 400px; /* Increased illustration size for desktop */
 }
 
-/* Footer */
+.contact-info {
+  margin-top: 80px; /* Add significant top margin to the contact info block */
+}
+
+.contact-info p {
+  font-size: 1.25em;
+  color: var(--primary-red);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center; /* Center the icon and text together on each line */
+}
+
+.contact-info p .icon {
+  margin-right: 15px;
+  color: var(--primary-red);
+  font-size: 1.6em;
+  flex-shrink: 0;
+  position: relative;
+  top: 2px;
+}
+
+.contact-info p a {
+  color: var(--primary-red);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
 .footer {
   background-color: var(--primary-red);
   color: var(--white);
   padding: 40px 20px;
   margin-top: 80px;
-  text-align: center; /* Default alignment for overall footer */
+  text-align: center;
 }
 
 .footer-content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Distributes space evenly */
-  align-items: flex-start; /* Aligns items to the start of the cross axis */
+  justify-content: space-around;
+  align-items: flex-start;
   max-width: 1200px;
-  margin: 0 auto 30px auto; /* Center content and add bottom margin */
-  gap: 30px; /* Space between columns */
+  margin: 0 auto 30px auto;
+  gap: 30px;
 }
 
 .footer-logo,
 .footer-links,
 .footer-contact {
-  flex: 1 1 300px; /* Allows items to grow/shrink, with a base width of 300px */
-  text-align: left; /* Align content within columns to the left */
+  flex: 1 1 300px;
+  text-align: left;
 }
 
 .footer-logo img {
-  height: 200px; /* Adjusted size for footer logo */
+  height: 200px;
   width: auto;
   max-width: 100%;
   margin-bottom: 20px;
-  display: block; /* Ensures proper spacing and allows margin auto for centering */
-  margin-left: auto; /* Center logo within its flex item */
-  margin-right: auto; /* Center logo within its flex item */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .footer-links h3,
@@ -513,7 +759,7 @@ body {
   font-weight: 700;
   border-bottom: 2px solid rgba(255, 255, 255, 0.3);
   padding-bottom: 10px;
-  display: inline-block; /* To make border-bottom only as wide as text */
+  display: inline-block;
 }
 
 .footer-links ul {
@@ -540,24 +786,30 @@ body {
   font-size: 1.1em;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 10px;
-  display: flex; /* Use flex to align icon and text */
-  align-items: center; /* Vertically align icon and text */
+  display: flex;
+  align-items: flex-start;
 }
 
 .footer-contact p .fas {
   margin-right: 10px;
   color: var(--secondary-red);
+  flex-shrink: 0;
+  position: relative;
+  top: 2px;
+}
+
+.footer-contact p span {
+  line-height: inherit;
 }
 
 .footer-contact p a {
-  /* Style for links in footer contact */
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-contact p a:hover {
-  color: var(--secondary-red);
+  color: var(--primary-red);
 }
 
 .copyright {
@@ -568,17 +820,16 @@ body {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
   .navbar .logo img {
-    height: 180px; /* Adjusted for tablets */
-    margin: -70px 0 -70px 0; /* Re-adjust negative margins for responsive */
+    height: 180px;
+    margin: -70px 0 -70px 0;
   }
   .header {
-    padding: 10px 0; /* Keep header slim */
+    padding: 10px 0;
   }
   .banner {
-    padding-top: 200px; /* Adjusted for smaller screens and logo */
+    padding-top: 200px;
   }
   .banner h1 {
     font-size: 3.2em;
@@ -589,71 +840,196 @@ body {
   .section h2 {
     font-size: 2.8em;
   }
-  /* Contact Section Responsive */
+  .features-section {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+  .features-section h2 {
+    font-size: 2.5em;
+  }
+  .features-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+  }
+  .feature-item {
+    padding: 25px 15px;
+  }
+  .feature-item .icon {
+    font-size: 2.5em;
+    margin-bottom: 18px;
+  }
+  .feature-item h3 {
+    font-size: 1.4em;
+  }
+  .feature-item p {
+    font-size: 0.95em;
+  }
+  .btn-small {
+    display: none;
+  }
+  .services-container {
+    margin-bottom: 60px;
+  }
+  .top-services-heading {
+    font-size: 2.8em;
+  }
+  .service-item .icon {
+    font-size: 3em;
+  }
+  .service-item h3,
+  .truck-item h3 {
+    font-size: 1.6em;
+  }
+  .expect-heading {
+    font-size: 2.2em;
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+  .expect-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .expect-item {
+    padding: 8px;
+    gap: 8px;
+  }
+  .expect-item .fas {
+    font-size: 1.6em;
+    margin-top: 2px;
+  }
+  .expect-item h4 {
+    font-size: 1em;
+    margin-bottom: 2px;
+  }
+  .expect-item p {
+    font-size: 0.75em;
+    line-height: 1.5;
+  }
   .contact-container {
-    flex-direction: column; /* Stack columns on smaller screens */
+    flex-direction: column;
     align-items: center;
-    text-align: center; /* Center text content when stacked */
+    text-align: center;
   }
   .contact-text-content {
-    padding-right: 0; /* Remove right padding when stacked */
-    padding-bottom: 40px; /* Add space below text content */
-    text-align: center; /* Center text content */
+    padding-right: 0;
+    padding-bottom: 40px;
+    text-align: center; /* Ensure it remains centered */
   }
   .contact-text-content .contact-subtitle,
   .contact-text-content .contact-title {
-    text-align: center; /* Center these headings */
+    text-align: center;
+  }
+  /* Adjusted margin for contact-intro-text for better flow with contact-info margin-top */
+  .contact-intro-text {
+    margin: 20px auto 60px auto;
   }
   .contact-info p {
-    justify-content: center; /* Center contact lines */
+    justify-content: center; /* Ensure consistent centering */
+  }
+  .contact-illustration {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+  }
+  .contact-illustration img {
+    max-height: 350px; /* Increased illustration size for medium screens */
   }
   .footer-logo img {
-    height: 150px; /* Smaller footer logo on tablets */
+    height: 150px;
   }
   .footer-content {
-    flex-direction: column; /* Stack footer columns on smaller screens */
-    align-items: center; /* Center items when stacked */
+    flex-direction: column;
+    align-items: center;
   }
   .footer-logo,
   .footer-links,
   .footer-contact {
-    text-align: center; /* Center content when stacked */
-    max-width: 100%; /* Allow full width when stacked */
+    text-align: center;
+    max-width: 100%;
   }
   .footer-links h3,
   .footer-contact h3 {
-    display: block; /* Make border-bottom full width when stacked */
+    display: block;
   }
   .footer-contact p {
-    justify-content: center; /* Center contact info when stacked */
+    justify-content: center;
+    align-items: flex-start;
   }
 }
 
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    padding-bottom: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
   }
+
   .navbar .logo {
-    margin-bottom: 20px;
+    flex-grow: 1;
+    text-align: center;
   }
   .navbar .logo img {
-    height: 120px; /* Adjust for mobile */
-    margin: -40px 0 -40px 0; /* Re-adjust negative margins for mobile */
+    height: 180px;
+    margin: -75px auto -75px auto;
   }
   .header {
-    padding: 8px 0; /* Keep header slim */
+    padding: 8px 0;
   }
+
   .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 250px;
+    height: 100%;
+    background-color: var(--light-gray);
+    flex-direction: column;
+    padding: 100px 20px 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease-in-out;
+    z-index: 1050;
+    display: flex;
+    align-items: flex-start;
   }
+
+  .nav-links.open {
+    left: 0;
+  }
+
   .nav-links li {
-    margin: 0 15px 10px;
+    margin: 0 0 20px 0;
+    width: 100%;
   }
+
+  .nav-links a {
+    color: var(--text-color);
+    font-size: 1.3em;
+    display: block;
+    padding: 10px 0;
+  }
+
+  .nav-links a::after {
+    left: 0;
+    width: 0;
+  }
+  .nav-links a:hover::after,
+  .nav-links a.active::after {
+    width: 100%;
+  }
+
+  .hamburger {
+    display: flex !important;
+  }
+
+  body.nav-open .nav-links {
+    left: 0;
+  }
+
   .banner {
     min-height: 80vh;
-    padding-top: 150px; /* Adjusted for mobile nav height */
+    padding-top: 150px;
   }
   .banner h1 {
     font-size: 2.5em;
@@ -671,40 +1047,130 @@ body {
   .section h2 {
     font-size: 2.2em;
   }
-  .services-container,
-  .trucks-container {
+  .features-section {
+    padding: 60px 15px;
+  }
+  .features-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 30px;
+  }
+  .feature-item {
+    padding: 20px 15px;
+  }
+  .feature-item .icon {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+  }
+  .feature-item h3 {
+    font-size: 1.2em;
+  }
+  .feature-item p {
+    font-size: 0.9em;
+  }
+  .btn-small {
+    display: none;
+  }
+  .top-services-heading {
+    font-size: 2.2em;
+  }
+  .service-item .icon {
+    font-size: 3em;
+  }
+  .service-item h3,
+  .truck-item h3 {
+    font-size: 1.6em;
+  }
+  .expect-heading {
+    font-size: 1.8em;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  .expect-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
-  .service-item,
-  .truck-item {
-    padding: 30px;
+  .expect-item {
+    padding: 10px;
+    gap: 10px;
+    grid-template-columns: auto 1fr;
+    align-items: center;
   }
-  .about-content {
-    font-size: 1.1em;
+  .expect-item .fas {
+    font-size: 1.7em;
+    margin-top: 1px;
   }
-  /* Contact Section Responsive */
+  .expect-item h4 {
+    font-size: 1em;
+    margin-bottom: 2px;
+  }
+  .expect-item p {
+    font-size: 0.8em;
+    line-height: 1.5;
+  }
   .contact-section .contact-title {
-    font-size: 2.5em; /* Adjust for smaller screens */
+    font-size: 2.5em;
   }
-  .contact-intro-text,
+  .contact-intro-text {
+    font-size: 1em;
+  }
+  /* Adjusted margin for contact-intro-text for better flow with contact-info margin-top */
+  .contact-intro-text {
+    margin: 20px auto 60px auto;
+  }
   .contact-info p {
-    font-size: 1em; /* Adjust for smaller screens */
+    font-size: 1.1em;
+    justify-content: center; /* Ensure consistent centering */
   }
   .contact-info p .icon {
-    font-size: 1.3em;
+    font-size: 1.4em;
+  }
+  .contact-illustration img {
+    max-height: 300px;
   }
   .footer-logo img {
-    height: 100px; /* Even smaller footer logo on mobile */
+    height: 150px;
+  }
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-logo,
+  .footer-links,
+  .footer-contact {
+    text-align: center;
+    max-width: 100%;
+  }
+  .footer-links h3,
+  .footer-contact h3 {
+    display: block;
+  }
+  .footer-contact p {
+    justify-content: center;
+    align-items: flex-start;
   }
 }
 
 @media (max-width: 480px) {
   .navbar .logo img {
-    height: 80px; /* Further adjust for smaller mobiles */
-    margin: -25px 0 -25px 0;
+    height: 140px;
+    margin: -55px auto -55px auto;
+  }
+
+  .nav-links {
+    width: 200px;
+    left: -230px;
+    padding: 80px 15px 15px;
   }
   .nav-links a {
-    font-size: 1em;
+    font-size: 1.2em;
+  }
+  .hamburger {
+    display: flex !important;
+  }
+
+  .banner {
+    min-height: 80vh;
+    padding-top: 150px;
   }
   .banner h1 {
     font-size: 2em;
@@ -715,6 +1181,32 @@ body {
   .section h2 {
     font-size: 1.8em;
   }
+  .features-section h2 {
+    font-size: 1.7em;
+  }
+  .features-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .feature-item {
+    padding: 18px 15px;
+  }
+  .feature-item .icon {
+    font-size: 2em;
+    margin-bottom: 12px;
+  }
+  .feature-item h3 {
+    font-size: 1.1em;
+  }
+  .feature-item p {
+    font-size: 0.85em;
+  }
+  .btn-small {
+    display: none;
+  }
+  .top-services-heading {
+    font-size: 1.8em;
+  }
   .service-item .icon {
     font-size: 3em;
   }
@@ -722,14 +1214,40 @@ body {
   .truck-item h3 {
     font-size: 1.6em;
   }
+  .expect-heading {
+    font-size: 1.8em;
+    margin-top: 40px;
+    margin-bottom: 25px;
+  }
+  .expect-item .fas {
+    font-size: 1.5em;
+    margin-top: 1px;
+  }
+  .expect-item h4 {
+    font-size: 0.95em;
+    margin-bottom: 1px;
+  }
+  .expect-item p {
+    font-size: 0.75em;
+    line-height: 1.5;
+  }
   .contact-section .contact-title {
     font-size: 2em;
   }
-  .contact-intro-text,
-  .contact-info p {
+  .contact-intro-text {
     font-size: 0.95em;
   }
+  /* Adjusted margin for contact-intro-text for better flow with contact-info margin-top */
+  .contact-intro-text {
+    margin: 20px auto 60px auto;
+  }
+  .contact-info p {
+    font-size: 1.05em;
+  }
   .contact-info p .icon {
-    font-size: 1.2em;
+    font-size: 1.3em;
+  }
+  .contact-illustration img {
+    max-height: 300px; /* Increased illustration size for small screens */
   }
 }
