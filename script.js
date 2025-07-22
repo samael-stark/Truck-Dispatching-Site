@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
 
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
+      const targetId = this.getAttribute("href");
+      document.querySelector(targetId).scrollIntoView({
         behavior: "smooth",
       });
 
@@ -36,10 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if (document.body.classList.contains("nav-open")) {
         toggleNav();
       }
-
-      setTimeout(() => {
-        revealOnScroll();
-      }, 700);
     });
   });
 
@@ -54,30 +51,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const revealElements = document.querySelectorAll(".reveal");
 
-  function revealOnScroll() {
-    for (let i = 0; i < revealElements.length; i++) {
-      let windowHeight = window.innerHeight;
-      let revealTop = revealElements[i].getBoundingClientRect().top;
-      let revealPoint = 100;
-
-      if (
-        revealTop < windowHeight - revealPoint &&
-        !revealElements[i].classList.contains("hidden")
-      ) {
-        revealElements[i].classList.add("active");
-      } else if (
-        revealElements[i].classList.contains("active") &&
-        (revealTop > windowHeight - revealPoint ||
-          revealElements[i].classList.contains("hidden"))
-      ) {
-        revealElements[i].classList.remove("active");
-      }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    },
+    {
+      rootMargin: "0px",
+      threshold: 0.1,
     }
-  }
+  );
 
-  window.addEventListener("scroll", revealOnScroll);
-  // Initial call to reveal elements already in view on page load
-  revealOnScroll();
+  revealElements.forEach((element) => {
+    observer.observe(element);
+  });
 
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
@@ -95,23 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
   hamburger.addEventListener("click", toggleNav);
   overlay.addEventListener("click", toggleNav);
 
-  document.querySelectorAll(".accordion-header").forEach((header) => {
-    header.addEventListener("click", () => {
-      const content = header.nextElementSibling;
-      const icon = header.querySelector(".accordion-icon");
-
-      content.classList.toggle("show");
-      header.classList.toggle("active");
-      icon.classList.toggle("active");
-
-      if (content.classList.contains("show")) {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } else {
-        content.style.maxHeight = "0";
-      }
-    });
-  });
-
   const serviceItems = document.querySelectorAll(
     ".services-container .service-item"
   );
@@ -122,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (serviceItems.length > itemsToShowInitially) {
       for (let i = itemsToShowInitially; i < serviceItems.length; i++) {
         serviceItems[i].classList.add("hidden");
-        serviceItems[i].classList.remove("active");
       }
       showMoreBtn.style.display = "inline-block";
     } else {
@@ -131,8 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       showMoreBtn.style.display = "none";
     }
-
-    revealOnScroll();
   }
 
   initializeServiceItems();
@@ -143,32 +115,48 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!isShowingAll) {
       let delay = 0;
       for (let i = itemsToShowInitially; i < serviceItems.length; i++) {
-        serviceItems[i].classList.remove("hidden");
-
-        const animationClass = serviceItems[i].classList.contains(
-          "fade-in-left"
-        )
-          ? "fade-in-left"
-          : "fade-in-right";
-        serviceItems[i].classList.add(animationClass);
+        const item = serviceItems[i];
+        item.classList.remove("hidden");
+        // Re-add animation classes to trigger animation when shown
+        item.classList.remove("fade-in-left", "fade-in-right");
+        const animationClass = i % 2 === 0 ? "fade-in-right" : "fade-in-left"; // Assuming alternating animations
+        item.classList.add(animationClass);
         setTimeout(() => {
-          serviceItems[i].classList.add("active");
+          item.classList.add("active");
         }, delay);
-        delay += 50;
+        delay += 50; // Staggered delay
       }
       showMoreBtn.textContent = "Show Less Services";
     } else {
       for (let i = serviceItems.length - 1; i >= itemsToShowInitially; i--) {
         const item = serviceItems[i];
-        item.classList.remove("active");
+        item.classList.remove("active"); // Trigger fade-out (if defined in CSS)
+        // Delay hiding the element until animation completes
         setTimeout(() => {
           item.classList.add("hidden");
-        }, 500);
+        }, 500); // Match CSS transition duration if applicable
       }
       showMoreBtn.textContent = "Show More Services";
+      // Scroll to top of services section if it's not already visible or near top
       document
         .getElementById("services")
         .scrollIntoView({ behavior: "smooth" });
     }
   });
+
+  function reloadPage() {
+    location.reload();
+  }
+
+  const navbarLogo = document.querySelector(".navbar .logo img");
+  if (navbarLogo) {
+    navbarLogo.style.cursor = "pointer";
+    navbarLogo.addEventListener("click", reloadPage);
+  }
+
+  const footerLogo = document.querySelector(".footer .footer-logo img");
+  if (footerLogo) {
+    footerLogo.style.cursor = "pointer";
+    footerLogo.addEventListener("click", reloadPage);
+  }
 });
