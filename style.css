@@ -840,7 +840,7 @@ body.nav-open {
 }
 
 .footer-contact p a:hover {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .copyright {
