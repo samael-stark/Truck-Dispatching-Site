@@ -834,13 +834,13 @@ body.nav-open {
 }
 
 .footer-contact p a {
-  color: var(--text-color);
+  color: #ffffff;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-contact p a:hover {
-  color: var(--primary-red);
+  color: #ffffff;
 }
 
 .copyright {
